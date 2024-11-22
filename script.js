@@ -1,93 +1,128 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Dynamic project display on projects.html page
-    const projectsContainer = document.getElementById("projects-container");
+/* Basic Styles for the Project Page */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
 
-    // Example project data (this would typically come from a database or API)
-    const projects = [
-        { title: "Project 1", description: "Description 1", image: "assets/project1.jpg", link: "project1.html" },
-        { title: "Project 2", description: "Description 2", image: "assets/project2.jpg", link: "project2.html" },
-        { title: "Project 3", description: "Description 3", image: "assets/project3.jpg", link: "project3.html" },
-    ];
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
 
-    // Render projects dynamically
-    if (projectsContainer) {
-        projects.forEach(project => {
-            const projectCard = document.createElement("div");
-            projectCard.classList.add("project-card");
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
 
-            projectCard.innerHTML = `
-                <img src="${project.image}" alt="${project.title}">
-                <h3><a href="${project.link}">${project.title}</a></h3>
-                <p>${project.description}</p>
-            `;
-            projectsContainer.appendChild(projectCard);
-        });
-    }
+header nav ul {
+    list-style: none;
+    display: flex;
+}
 
-    // Smooth page transition for links (fade-out and fade-in)
-    const links = document.querySelectorAll("a");
-    links.forEach(link => {
-        link.addEventListener("click", e => {
-            e.preventDefault(); // Prevent immediate navigation
-            const target = link.getAttribute("href");
+header nav ul li {
+    margin: 0 15px;
+}
 
-            document.body.classList.add("fade-out"); // Trigger fade-out effect
-            setTimeout(() => {
-                window.location = target; // Redirect after fade-out
-            }, 500); // Duration matches fade-out animation
-        });
-    });
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
 
-    // Form validation for submitting projects
-    const projectForm = document.getElementById("project-form");
-    if (projectForm) {
-        projectForm.addEventListener("submit", e => {
-            e.preventDefault();
-            const title = document.getElementById("title").value.trim();
-            const description = document.getElementById("description").value.trim();
-            const image = document.getElementById("image").files[0];
+header nav ul li a:hover {
+    text-decoration: underline;
+}
 
-            // Basic form validation
-            if (!title || !description || !image) {
-                alert("Please fill in all fields and upload an image.");
-                return;
-            }
+.projects-filter {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+}
 
-            // Simulate form submission (could be to an API or server)
-            alert(`Project "${title}" has been submitted successfully!`);
+.filter-sort {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-            // Clear the form fields after submission
-            projectForm.reset();
-        });
-    }
+.filter {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-    // Hover effect for project cards (enlarging on hover)
-    const projectCards = document.querySelectorAll(".project-card");
-    projectCards.forEach(card => {
-        card.addEventListener("mouseover", () => {
-            card.style.transform = "scale(1.05)";
-        });
-        card.addEventListener("mouseout", () => {
-            card.style.transform = "scale(1)";
-        });
-    });
+.projects {
+    padding: 40px 0;
+}
 
-    // Scroll animations for smooth scrolling to top of page when a link is clicked
-    const scrollToTopButton = document.createElement("button");
-    scrollToTopButton.classList.add("scroll-to-top");
-    scrollToTopButton.textContent = "↑";
-    document.body.appendChild(scrollToTopButton);
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
 
-    scrollToTopButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+.project-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
-    // Show the "scroll to top" button after scrolling a bit
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-            scrollToTopButton.classList.add("visible");
-        } else {
-            scrollToTopButton.classList.remove("visible");
-        }
-    });
-});
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.project-card a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.project-card a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    background-color: #f7b731;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #e67e22;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
